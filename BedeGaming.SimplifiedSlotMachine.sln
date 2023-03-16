@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33424.131
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BedeGaming.SimplifiedSlotMachine", "BedeGaming.SimplifiedSlotMachine\BedeGaming.SimplifiedSlotMachine.csproj", "{3B150179-A15C-4A2E-90AF-6E3C0BE5A86A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Games", "Games\Games.csproj", "{A251037F-CD80-43E7-AEFD-27DD5AB7ACBC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3B150179-A15C-4A2E-90AF-6E3C0BE5A86A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B150179-A15C-4A2E-90AF-6E3C0BE5A86A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B150179-A15C-4A2E-90AF-6E3C0BE5A86A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B150179-A15C-4A2E-90AF-6E3C0BE5A86A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A251037F-CD80-43E7-AEFD-27DD5AB7ACBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A251037F-CD80-43E7-AEFD-27DD5AB7ACBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A251037F-CD80-43E7-AEFD-27DD5AB7ACBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A251037F-CD80-43E7-AEFD-27DD5AB7ACBC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8AFCE45D-B9A1-4D20-A2F1-DC7DAC034993}
+	EndGlobalSection
+EndGlobal
