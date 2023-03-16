@@ -1,12 +1,13 @@
 ﻿using Games;
 using Games.Exceptions;
-using Games.Interfaces;
+using Games.Games.SlotMachine;
+using Games.Models;
 
 decimal deposit;
 do Console.Write("Please deposit money you would like to play with:");
 while (!decimal.TryParse(Console.ReadLine(), out deposit));
 
-IBettingGame bettingGame = SlotMachine.SlotMachine4Row3Slot4Symbols();
+IBettingGame bettingGame = new SlotMachine4Row3Slot4Symbols();
 BettingGameInstance game = new(deposit, bettingGame);
 
 while (game.CanPlay)
@@ -17,11 +18,11 @@ while (game.CanPlay)
 
     try
     {
-        (string playView, decimal won, decimal balance) = game.Bet(stake);
-        Console.WriteLine(playView);
+        BetResult result = game.Bet(stake);
+        Console.WriteLine(result.View);
         Console.WriteLine(Environment.NewLine);
-        Console.WriteLine($"You have won: {Math.Round(won, 1)}");
-        Console.WriteLine($"Current balance is: {Math.Round(balance, 1)}");
+        Console.WriteLine($"You have won: {Math.Round(result.Won, 1)}");
+        Console.WriteLine($"Current balance is: {Math.Round(game.Balance, 1)}");
     }
     catch (Exception ex) when (ex is BalanceNotEnought || ex is NegativeValue)
     {

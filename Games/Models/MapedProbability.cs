@@ -1,6 +1,6 @@
-﻿namespace Games
+﻿namespace Games.Games.SlotMachine
 {
-    internal readonly struct MapedProbability<T>
+    internal class MapedProbability<T>
     {
         public T Оccurrence { get; init; }
         public double Start { get; init; }

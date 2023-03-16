@@ -1,14 +1,14 @@
 ﻿using Games.Exceptions;
-using Games.Interfaces;
+using Games.Models;
 
 namespace Games
 {
-    public struct BettingGameInstance
+    public class BettingGameInstance
     {
-        private decimal Balance { get; set; }
+        public decimal Balance { get; private set; }
         private IBettingGame Game { get; init; }
 
-        public (string playView, decimal won, decimal balance) Bet(decimal stake)
+        public BetResult Bet(decimal stake)
         {
             if (stake <= 0)
                 throw new NegativeValue($"Can not stake zero or negative value: {stake}");
@@ -16,11 +16,11 @@ namespace Games
             if (stake > Balance)
                 throw new BalanceNotEnought($"Your balance is not enought: {Balance}");
 
-            (string playView, double playCoefficient) = Game.NextResult();
-            decimal won = stake * (decimal)playCoefficient;
+            var result = Game.NextResult();
+            decimal won = stake * result.WinCoefficient;
             Balance += won - stake;
 
-            return (playView, won, Balance);
+            return new BetResult(result.View, won);
         }
 
         public bool CanPlay => Balance > 0;
@@ -33,5 +33,4 @@ namespace Games
             Game = game;
         }
     }
-
 }

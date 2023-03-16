@@ -1,5 +1,6 @@
 using Games;
 using Games.Exceptions;
+using Games.Games.SlotMachine;
 
 namespace Tests
 {
@@ -11,7 +12,7 @@ namespace Tests
         [SetUp]
         public void Setup()
         {
-            game = new(InitialDeposit, SlotMachine.SlotMachine4Row3Slot4Symbols());
+            game = new(InitialDeposit, new SlotMachine4Row3Slot4Symbols());
         }
 
         [Test]
@@ -51,8 +52,8 @@ namespace Tests
         [Test]
         public void CanNotCreateGameWhitZeroOrNegativeDeposit()
         {
-            Assert.Throws<NegativeValue>(() => new BettingGameInstance(0, SlotMachine.SlotMachine4Row3Slot4Symbols()));
-            Assert.Throws<NegativeValue>(() => new BettingGameInstance(-1, SlotMachine.SlotMachine4Row3Slot4Symbols()));
+            Assert.Throws<NegativeValue>(() => new BettingGameInstance(0, new SlotMachine4Row3Slot4Symbols()));
+            Assert.Throws<NegativeValue>(() => new BettingGameInstance(-1, new SlotMachine4Row3Slot4Symbols()));
         }
     }
 }

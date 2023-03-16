@@ -1,9 +1,10 @@
 ﻿using System.Collections.ObjectModel;
-using Games.Interfaces;
+using Games.Games.SlotMachine;
+using Games.Models;
 
 namespace Games
 {
-    internal readonly struct ОccurrenceGenerator<T> where T : IОccurrence
+    internal class ОccurrenceGenerator<T> where T : IОccurrence
     {
         private ReadOnlyCollection<MapedProbability<T>> MapedProbabilities { get; init; }
         private readonly Random random = new();
@@ -11,7 +12,7 @@ namespace Games
         public T GetRandom()
         {
             double randomDouble = random.NextDouble();
-            MapedProbability<T> result = MapedProbabilities.FirstOrDefault(map => map.Start <= randomDouble && randomDouble < map.End);
+            MapedProbability<T>? result = MapedProbabilities.FirstOrDefault(map => map.Start <= randomDouble && randomDouble < map.End);
             return result.Оccurrence ?? throw new InvalidOperationException("Can not generate randpm symbol.");
         }
 
@@ -21,7 +22,7 @@ namespace Games
             double combinedProbability = 0;
             foreach (T po in posibleОccurrence)
             {
-                MapedProbability<T> mp = new(po, combinedProbability, combinedProbability + po.ProbabilityToAppear);
+                MapedProbability<T> mp = new(po, combinedProbability, combinedProbability + po.Weight);
                 combinedProbability = mp.End;
                 maped.Add(mp);
             }

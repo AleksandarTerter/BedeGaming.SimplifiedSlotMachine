@@ -1,9 +1,9 @@
 ﻿using System.Collections.ObjectModel;
-using Games.Interfaces;
+using Games.Models;
 
 namespace Games
 {
-    internal class CombinationsGenerator<T> where T : IОccurrence
+    internal class SlotMachineCombinationsGenerator<T> where T : IОccurrence
     {
         private ОccurrenceGenerator<T> SymbolGenerator { get; init; }
         private byte CombinationSize { get; init; }
@@ -24,7 +24,7 @@ namespace Games
             return combinations.Select(combination => combination.AsReadOnly()).ToArray().AsReadOnly();
         }
 
-        internal CombinationsGenerator(ОccurrenceGenerator<T> symbolGenerator, byte symbolsPerCombination, byte combinationsPerGamble)
+        internal SlotMachineCombinationsGenerator(ОccurrenceGenerator<T> symbolGenerator, byte symbolsPerCombination, byte combinationsPerGamble)
         {
             SymbolGenerator = symbolGenerator;
             CombinationSize = symbolsPerCombination;

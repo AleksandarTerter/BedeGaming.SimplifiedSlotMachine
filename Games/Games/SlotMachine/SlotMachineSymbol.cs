@@ -1,20 +1,20 @@
-﻿using Games.Interfaces;
+﻿using Games.Models;
 
-namespace Games
+namespace Games.Games.SlotMachine
 {
     internal readonly struct SlotMachineSymbol : IОccurrence
     {
         public string Name { get; init; }
         public bool IsWildcard { get; init; }
         public double Coefficient { get; init; }
-        public double ProbabilityToAppear { get; init; }
+        public double Weight { get; init; }
 
         internal SlotMachineSymbol(string name, bool isWildcard, double coefficient, double probabilityToAppear)
         {
             Name = name;
             IsWildcard = isWildcard;
             Coefficient = coefficient;
-            ProbabilityToAppear = probabilityToAppear;
+            Weight = probabilityToAppear;
         }
 
         public override bool Equals(object? obj) =>

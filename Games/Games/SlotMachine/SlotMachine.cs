@@ -1,19 +1,19 @@
 ﻿using System.Collections.ObjectModel;
-using Games.Interfaces;
+using Games.Models;
 
-namespace Games
+namespace Games.Games.SlotMachine
 {
-    public readonly struct SlotMachine : IBettingGame
+    public class SlotMachine : IBettingGame
     {
-        private CombinationsGenerator<SlotMachineSymbol> CombinationsGenerator { get; init; }
+        private SlotMachineCombinationsGenerator<SlotMachineSymbol> CombinationsGenerator { get; init; }
 
-        public (string playView, double playCoefficient) NextResult()
+        public BetGameResult NextResult()
         {
             ReadOnlyCollection<ReadOnlyCollection<SlotMachineSymbol>> combinations = CombinationsGenerator.GetRandom();
             double playCoefficient = combinations.Select(CalcCoefficient).Sum();
             string playView = GetView(combinations);
 
-            return (playView, playCoefficient);
+            return new(playView, (decimal)playCoefficient);
         }
 
         private static double CalcCoefficient(IEnumerable<SlotMachineSymbol> combination)
@@ -33,22 +33,9 @@ namespace Games
                 Environment.NewLine,
                 combinations.Select(c => string.Concat(c.Select(s => s.Name))));
 
-        internal SlotMachine(CombinationsGenerator<SlotMachineSymbol> combinationsGenerator)
+        internal SlotMachine(SlotMachineCombinationsGenerator<SlotMachineSymbol> combinationsGenerator)
         {
             CombinationsGenerator = combinationsGenerator;
-        }
-
-        public static IBettingGame SlotMachine4Row3Slot4Symbols()
-        {
-            ОccurrenceGenerator<SlotMachineSymbol> symbGen = new(new HashSet<SlotMachineSymbol>() {
-                new SlotMachineSymbol("A", false, 0.4, 0.45),
-                new SlotMachineSymbol("B", false, 0.6, 0.35),
-                new SlotMachineSymbol("P", false, 0.8, 0.15),
-                new SlotMachineSymbol("*", true, 0, 0.05),
-            });
-            CombinationsGenerator<SlotMachineSymbol> combinGen = new(symbGen, 3, 4);
-
-            return new SlotMachine(combinGen);
         }
     }
 
