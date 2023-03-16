@@ -8,7 +8,7 @@ namespace Games
         private decimal Balance { get; set; }
         private IBettingGame Game { get; init; }
 
-        public (string playView, decimal won, decimal balance) Gamble(decimal stake)
+        public (string playView, decimal won, decimal balance) Bet(decimal stake)
         {
             if (stake <= 0)
                 throw new NegativeValue($"Can not stake zero or negative value: {stake}");
@@ -26,6 +26,9 @@ namespace Games
         public bool CanPlay => Balance > 0;
         public BettingGameInstance(decimal deposit, IBettingGame game)
         {
+            if (deposit <= 0)
+                throw new NegativeValue($"Can not stake zero or negative value: {deposit}");
+
             Balance = deposit;
             Game = game;
         }

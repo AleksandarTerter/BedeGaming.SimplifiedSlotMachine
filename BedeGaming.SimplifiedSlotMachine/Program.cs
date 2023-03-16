@@ -17,7 +17,7 @@ while (game.CanPlay)
 
     try
     {
-        (string playView, decimal won, decimal balance) = game.Gamble(stake);
+        (string playView, decimal won, decimal balance) = game.Bet(stake);
         Console.WriteLine(playView);
         Console.WriteLine(Environment.NewLine);
         Console.WriteLine($"You have won: {Math.Round(won, 1)}");

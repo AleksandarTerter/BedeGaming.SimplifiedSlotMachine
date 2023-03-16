@@ -1,5 +1,9 @@
 # BedeGaming.SimplifiedSlotMachine
-.NET Developer Test
+## Dev notes:
+ToDos:
+- [ ] Cover code whit tests! The repo is not covered whit tests
+
+## .NET Developer Test
 Simplified Slot Machine
 
 This is a short task that aims to evaluate your problem-solving skills and your software development
